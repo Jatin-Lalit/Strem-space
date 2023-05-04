@@ -1,6 +1,7 @@
 const express = require("express");
 const { connection } = require("./config/db");
 const { userRoute } = require("./routes/userRoute.routes");
+const { auth } = require("./midleware/auth.middleware");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const session = require("express-session");
@@ -28,6 +29,16 @@ app.use(
   })
 );
 app.use("/verify",otpRouter)
+
+app.use(auth)
+app.get("/check",async(req,res)=>{
+  try {
+    res.status(200).send({success:"successful"})
+  } catch (error) {
+    res.status(404).send({err:error})
+  }
+  
+})
 
 // listening and creating the mongosse connection
 app.listen(port, async () => {
