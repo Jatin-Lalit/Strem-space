@@ -5,6 +5,37 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { BlockModel } = require("../models/blockUser");
 require("dotenv").config();
+const nodemailer = require("nodemailer");
+
+// NODEMAILER TRANSPORTS CONFIGURATION
+const trasports = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "jackayron5@gmail.com",
+    pass: process.env.PASS,
+  },
+});
+// OTP GENERATRO
+function otpgenerator() {
+  let otp = "";
+  for (let i = 0; i < 6; i++) {
+    otp += Math.floor(Math.random() * 10);
+  }
+  return otp;
+}
+
+// varify
+userRoute.get("/otp", async (req, res) => {
+  const { OTP } = req.query;
+  const serverOtp = req.session.OTP;
+  console.log(req.session);
+  console.log(OTP, serverOtp);
+  if (OTP == serverOtp) {
+    res.send("OTP verified");
+  } else {
+    res.send("Wrong otp");
+  }
+});
 
 // user register route-----
 userRoute.post("/register", async (req, res) => {
@@ -18,9 +49,28 @@ userRoute.post("/register", async (req, res) => {
         if (err) {
           res.status(401).send({ error: err.message });
         } else {
-          const user = new UserModel({ name, email, password: hash });
-          await user.save();
-          res.status(200).send({ msg: "user created successful" });
+          const otp = otpgenerator();
+          trasports
+            .sendMail({
+              to: email,
+              from: "jackayron5@gmail.com",
+              subject: "OTP verification",
+              text: `Your OTP for login is ${otp}`,
+            })
+            .then((result) => {
+              console.log(result);
+              req.session.OTP = otp;
+              console.log(req.session.OTP, "LINE 57");
+              // res.send(otp);
+            })
+            .catch((err) => {
+              console.log(err);
+              console.log(err.message);
+              // res.send("Something wrong happend");
+            });
+            const user = new UserModel({ name, email, password: hash });
+            await user.save();
+            res.status(200).send({ msg: "user created successful", otp: otp });
         }
       });
     }
@@ -28,6 +78,10 @@ userRoute.post("/register", async (req, res) => {
     res.status(401).send({ error: error.message });
   }
 });
+
+function otpCheck(name,email,password,otp){
+
+}
 
 // user login and giving tokens----
 userRoute.post("/login", async (req, res) => {
@@ -40,13 +94,9 @@ userRoute.post("/login", async (req, res) => {
         var token = jwt.sign({ userId: user._id }, process.env.accessKey, {
           expiresIn: "30m",
         });
-        var reftoken = jwt.sign(
-          { userId: user._id },
-          process.env.refreshKey,
-          {
-            expiresIn: "1day",
-          }
-        );
+        var reftoken = jwt.sign({ userId: user._id }, process.env.refreshKey, {
+          expiresIn: "1day",
+        });
         // console.log(token);
         // client.set(`accessToken${user[0]._id}`,JSON.stringify(token), { EX: 1800 })
         // client.set(`refToken${user[0]._id}`,JSON.stringify(reftoken), { EX: 1800 })
