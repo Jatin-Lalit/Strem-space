@@ -1,0 +1,20 @@
+#middle-part-video-chat{
+    border: 1px solid red ;
+    width: 70%;
+    height: 550px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: grid;
+    /* justify-content: space-around; */
+    /* grid-template-columns: repeat(2 1fr);  */
+    /* grid-template-rows: repeat(2 1fr);  */
+    gap: 20px;
+}#middle-part-video-chat>div{
+    display: grid;
+    grid-template-columns: repeat(2 1fr);
+    /* grid-template-rows: repeat(2 1fr); */
+    border: 1px solid red ;
+    width: 7%;
+    height: 4%;
+}
