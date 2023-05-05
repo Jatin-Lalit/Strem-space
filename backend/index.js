@@ -1,11 +1,9 @@
 const express = require("express");
 const { connection } = require("./config/db");
 const { userRoute } = require("./routes/userRoute.routes");
-const { auth } = require("./midleware/auth.middleware");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const session = require("express-session");
-const { otpRouter } = require("./routes/otproutes.routes");
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -20,7 +18,6 @@ app.get("/", (req, res) => {
 });
 
 // attaching the user login and register routes----
-app.use("/users", userRoute);
 app.use(
   session({
     resave: true,
@@ -28,9 +25,8 @@ app.use(
     saveUninitialized: true,
   })
 );
-app.use("/verify",otpRouter)
+app.use("/users", userRoute);
 
-app.use(auth)
 app.get("/check",async(req,res)=>{
   try {
     res.status(200).send({success:"successful"})
