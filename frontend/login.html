@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login and Signup</title>
+	<link rel="stylesheet" href="./styles/login.css">
+	<link rel="stylesheet" href="./styles/navbar_login.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+	<div class="topnav" id="myTopnav">
+        <div id="background">
+            <div id="logo">
+               <a href="index.html"><img src="./images/airmeet.JPG" alt=""></a> 
+            </div>
+
+
+        </div>
+    </div>
+	<div id="main">
+		<div id="left" >
+			<img class="leftalimg" src="./images/loginimage.png" alt="">
+		</div>
+		<div class="container">
+			<div class="form active" id="login-form">
+				<h2>Login</h2>
+				<form>
+					<div class="error-message" id="login-error"></div>
+					<input type="text" id="loginemail" placeholder="Email">
+					<input type="password" id="loginPassword" placeholder="Password">
+					<button type="submit" >Login</button>
+
+				</form>
+				<div class="toggle" id="signup-toggle">Don't have an account? Sign up</div>
+			</div>
+			<div class="form" id="signup-form">
+				<h2>Sign Up</h2>
+				<form>
+					<div class="error-message" id="signup-error"></div>
+					<input type="text" id="username" placeholder="Username">
+					<input type="email" id="email" placeholder="Email">
+					<input type="password" id="Password" placeholder="Password">
+					<button type="submit" >Sign Up</button>
+				</form>
+				<div class="toggle" id="login-toggle">Already have an account? Login</div>
+			</div>
+		</div>
+	</div>
+	
+	<script src="./scripts/login.js"></script>
+	</body>
+</html>
