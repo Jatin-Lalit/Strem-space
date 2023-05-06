@@ -17,6 +17,8 @@ logout=()=>{
             "Authorization":  something 
           }
     })
+////////ok
+
     .then(res=>res.json())
     .then(res=>{
 
