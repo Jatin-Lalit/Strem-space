@@ -1,132 +1,86 @@
-document.getElementById("signup-toggle").addEventListener("click", function(){
-    document.getElementById("login-form").classList.remove("active");
-    document.getElementById("signup-form").classList.add("active");
+const signUpButton = document.getElementById("signUp");
+const signInButton = document.getElementById("signIn");
+const container = document.getElementById("container");
+const leftPanel = document.querySelector(".left-panel");
+const rightPanel = document.querySelector(".right-panel");
+
+signUpButton.addEventListener("click", () => {
+  container.classList.add("right-panel-active");
 });
 
-document.getElementById("login-toggle").addEventListener("click", function(){
-    document.getElementById("signup-form").classList.remove("active");
-    document.getElementById("login-form").classList.add("active");
+signInButton.addEventListener("click", () => {
+  container.classList.remove("right-panel-active");
 });
 
-// import Swal from 'sweetalert2'
+container.style.backgroundImage =
+  "url('https://imagetolink.com/ib/FTj69HHARn.png')";
+container.style.backgroundRepeat = "no-repeat";
+container.style.backgroundSize = "cover";
+container.style.position = "relative";
+//////////////////////////////////////////////
 
-// CommonJS
-// const Swal = require('sweetalert2')
+let baseurl = "http://localhost:8080";
+let signup_btn = document.querySelector("#button1");
+let signin_btn = document.querySelector("#button2");
 
-const loginForm = document.getElementById("login-form");
+signup_btn.addEventListener("click", async (e) => {
+  e.preventDefault();
+  try {
+    // event.preventDefault();n
 
-loginForm.addEventListener("submit", function(event) {
-    event.preventDefault(); 
-    const usernameInput = document.getElementById("loginemail");
-    // const emailInput = document.querySelector('input[name="email"]');
-    const passwordInput = document.getElementById("loginPassword");
-const username = usernameInput.value;
-    // const email = emailInput.value;
-    const password = passwordInput.value;
-    const data = {email: username, password: password};
-    console.log(data)
-    if( password && username!=""){
-        fetch("https://wild-gold-betta-fez.cyclic.app/users/login", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(data)
-        })
-        .then(res=>res.json())
-            .then(res=>{
-                console.log(res)
-                if(res.err){
-                    // alert(res.err)
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'please check details',
-                        footer: '<a href="">Why do I have this issue?</a>'
-                      })
-                }else{
-                    // alert(res.success)
-                    Swal.fire(
-                        'Good job!',
-                        'Successfully LoggedIn',
-                        'success'
-                      )
-                      setTimeout(()=>{
-                        window.location.href="lobby.html"
-                      },2500)
-
-                   
-                }
-            })
-        .catch(error => {
-            console.error(error);
-            alert("Invalid Credentials")
-        });
-    }else{
-        // alert("please fill all details")
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'please fill all details',
-            footer: '<a href="">Why do I have this issue?</a>'
-          })
-    }
- 
-});
-
-const signupForm = document.getElementById("signup-form");
-
-signupForm.addEventListener("submit", function(event) {
-    event.preventDefault(); 
-    const usernameInput = document.getElementById("username");
-    const emailInput = document.getElementById("email");
-    const passwordInput = document.getElementById("Password");
-const username = usernameInput.value;
-    const email = emailInput.value;
-    const password = passwordInput.value;
-    const data = {name: username, email: email, password: password};
-    console.log(data)
-    if(email && password && username!=""){
-        fetch("https://wild-gold-betta-fez.cyclic.app/users/register", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(data)
-    })
-    .then(res=>res.json())
-            .then(res=>{
-                console.log(res)
-                if(res.msg){
-                    // alert(res.msg)
-                    Swal.fire(
-                        'Good job!',
-                        'Successfully Registered',
-                        'success'
-                      )
-                      setTimeout(()=>{
-                          window.location.href="login.html"
-                      },1500)
-                }else{
-                    // alert(res.message)
-                    
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'User Already Exists',
-                        footer: '<a href="">Why do I have this issue?</a>'
-                      })
-                }
-                
-            })
-    .catch(error => {
-       
-        console.error(error);
+    let email = document.getElementById("email").value;
+    let name = document.getElementById("name").value;
+    let pass = document.getElementById("password").value;
+    let obj = {
+      name: name,
+      email: email,
+      password: pass,
+    };
+    let signup_res = await fetch(`${baseurl}/users/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(obj),
     });
-    }else{
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'please fill all details',
-            footer: '<a href="">Why do I have this issue?</a>'
-          })
-        // alert("please fill all details")
+    console.log(signup_res);
+    if (signup_res.ok) {
+      alert("Register Succecfully Now You Can Login");
     }
-    
+  } catch (error) {
+    console.log(error);
+    alert(`Something Went Wrong`);
+  }
+});
+
+signin_btn.addEventListener("click", async (e) => {
+  e.preventDefault();
+  try {
+    // event.preventDefault();
+    let email = document.getElementById("email-log").value;
+    let password = document.getElementById("password-log").value;
+    let obj = {
+      email: email,
+      password: password,
+    };
+    console.log(obj);
+
+    let res = await fetch(`${baseurl}/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(obj),
+    });
+    if (res.ok) {
+      let token = await res.json();
+      localStorage.setItem("token", token.token);
+      alert("Login Succecfully");
+      window.location.href = "lobby.html";
+    } else {
+      alert("Wrong Credntials");
+    }
+  } catch (error) {
+    alert("Something going wrong");
+  }
 });
