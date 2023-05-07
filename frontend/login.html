@@ -1,52 +1,68 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Login and Signup</title>
-	<link rel="stylesheet" href="./styles/login.css">
-	<link rel="stylesheet" href="./styles/navbar_login.css">
+	<title>StreamSpace</title>
+	<link rel="icon" href="https://imagetolink.com/ib/x15dE984vZ.png" type="image/icon type" width="100" height="100">
+
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<link rel="stylesheet" href="../css/login-signuo.css">
+
 </head>
+
 <body>
-	<div class="topnav" id="myTopnav">
-        <div id="background">
-            <div id="logo">
-               <a href="index.html"><img src="./images/airmeet.JPG" alt=""></a> 
-            </div>
 
+	<div class="container" id="container">
+		<div class="form-container sign-up-container">
 
-        </div>
-    </div>
-	<div id="main">
-		<div id="left" >
-			<img class="leftalimg" src="./images/loginimage.png" alt="">
+			<form action="" id="form1">
+				<h1>Create Account</h1>
+				<div class="social-container">
+
+				</div>
+				<span> Use your email for registration</span>
+				<input type="text" name="name" placeholder="Name" id="name">
+				<input type="email" name="email" placeholder="Email" id="email">
+				<input type="password" name="password" placeholder="Password" id="password">
+				<input type="submit" value="submit" id="button1">
+			</form>
 		</div>
-		<div class="container">
-			<div class="form active" id="login-form">
-				<h2>Login</h2>
-				<form>
-					<div class="error-message" id="login-error"></div>
-					<input type="text" id="loginemail" placeholder="Email">
-					<input type="password" id="loginPassword" placeholder="Password">
-					<button type="submit" >Login</button>
+		<div class="form-container sign-in-container">
+			<form action="" id="form2">
+				<h1 id="head">Sign In</h1>
 
-				</form>
-				<div class="toggle" id="signup-toggle">Don't have an account? Sign up</div>
-			</div>
-			<div class="form" id="signup-form">
-				<h2>Sign Up</h2>
-				<form>
-					<div class="error-message" id="signup-error"></div>
-					<input type="text" id="username" placeholder="Username">
-					<input type="email" id="email" placeholder="Email">
-					<input type="password" id="Password" placeholder="Password">
-					<button type="submit" >Sign Up</button>
-				</form>
-				<div class="toggle" id="login-toggle">Already have an account? Login</div>
+				<span>Use your account</span>
+				<input type="email" name="email" placeholder="Email" id="email-log">
+				<input type="password" name="password" placeholder="Password" id="password-log">
+				<a href="#">
+					<h4 style="color:white;">Forgot Your Password</h4>
+				</a>
+
+
+				<input type="submit" value="submit" id="button2">
+
+			</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left">
+					<h1>Welcome Back!</h1>
+					<p>To keep connected with us please login with your personal info</p>
+					<button class="ghost" id="signIn">Sign In</button>
+				</div>
+				<div class="overlay-panel overlay-right">
+					<h1>Hello, Friend!</h1>
+					<p>Enter your details and start journey with us</p>
+					<button class="ghost" id="signUp">Sign Up</button>
+				</div>
 			</div>
 		</div>
 	</div>
-	
-	<script src="./scripts/login.js"></script>
-	</body>
+
+
+
+</body>
+
 </html>
+
+<script src="./scripts/login.js"></script>

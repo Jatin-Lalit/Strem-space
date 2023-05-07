@@ -65,14 +65,12 @@ userRoute.post("/login", async (req, res) => {
 // user logout and balcklisting-----
 userRoute.get("/logout", async (req, res) => {
   try {
-    const token = req.cookies.token;
 
-    // client.set(token, "token", {
-    //     EX: 1800
-    // })
-    let block = new BlockModel({ token });
+    const headerToken = req.headers?.authorization
+    let block = new BlockModel({ token : headerToken});
+  
     await block.save();
-    res.status(200).json({ success: "user blocklisted" });
+    res.status(200).json({ success: "user blacklisted" });
   } catch (error) {
     res.status(401).json({ error: error.message });
   }
@@ -82,7 +80,6 @@ userRoute.get("/logout", async (req, res) => {
 userRoute.get("/refresh", async (req, res) => {
   try {
     const reftoken = req.cookies.reftoken;
-
     var decoded = jwt.verify(reftoken, process.env.refreshKey);
     if (decoded) {
       var token = jwt.sign({ userId: decoded.userId }, process.env.accessKey, {
