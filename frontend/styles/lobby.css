@@ -1,7 +1,7 @@
 #form__container {
   margin-top: 50px;
   width: 90%;
-  max-width: 600px;
+  max-width: 400px;
   border-radius: 10px;
   background-color: #262625;
   position: fixed;
@@ -12,7 +12,7 @@
 
 #lobby__form {
   padding: 2em;
-  background-color: #3971ac;
+  background-color: #be1098;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -23,7 +23,7 @@
   border-radius: 10px 10px 0 0;
   padding: 10px;
   text-align: center;
-  background-color: #144272;
+  background-color: #660a52;
   margin: 0;
   font-size: 18px;
   font-size: 300;
@@ -58,7 +58,7 @@
 .form__field__wrapper button[type='submit'] {
   margin-top: 32px;
   cursor: pointer;
-  background-color: #144272;
+  background-color: #660a52;
   border: none;
   color: #fff;
   font-size: 16px;

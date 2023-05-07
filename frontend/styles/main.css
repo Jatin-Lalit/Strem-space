@@ -28,7 +28,7 @@
 }
 
 body {
-  background-color: #fff;
+  background-color: #262625;
   color: #fff;
 
   font-size: 14px;
@@ -64,7 +64,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #0A2647;
+  background-color: #be1098;
   text-decoration: none;
   padding: 16px 5%;
   z-index: 999;
@@ -125,7 +125,7 @@ a {
 
 #create__room__btn {
   display: block;
-  background-color: #0A2647;
+  background-color: #be1098;
   padding: 8px 24px;
   font-size: 14px;
   font-weight: 500;
