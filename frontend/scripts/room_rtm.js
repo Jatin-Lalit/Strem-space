@@ -13,7 +13,7 @@ let something = localStorage.getItem("token");
 
 
 logout = () => {
-  fetch("http://localhost:8080/users/logout", {
+  fetch("https://clumsy-scarf-lion.cyclic.app/users/logout", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
