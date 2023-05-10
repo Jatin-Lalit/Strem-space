@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>StreamSpace</title>
+    <link rel="icon" href="https://imagetolink.com/ib/x15dE984vZ.png" type="image/icon type" width="100" height="100">
+    <link rel="icon" href="https://imagetolink.com/ib/AWfUmwegJZ.png" type="image/icon type">
+	<style>
+		body {
+			background-image: url('https://imagetolink.com/ib/FTj69HHARn.png');
+			background-size: cover;
+			background-repeat: no-repeat;
+			font-family: Arial, sans-serif;
+			color: #fff;
+			text-align: center;
+		}
+
+		.container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			padding: 20px;
+			box-sizing: border-box;
+			background-color: rgba(0, 0, 0, 0.5);
+			border: 2px solid #fff;
+			border-radius: 10px;
+			box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+			max-width: 500px;
+			margin: auto;
+		}
+
+		#h3 {
+			font-size: 30px;
+			margin-bottom: 20px;
+            color: rgb(233, 101, 158);
+		}
+
+        .container h1{
+            color:rgb(0, 0, 0.7)
+        }
+		.container input[type="text"] {
+			padding: 10px;
+			font-size: 18px;
+			border: none;
+			background-color: #bdb834;
+			margin-bottom: 10px;
+			border-radius: 15px;
+			width: 100%;
+			max-width: 300px;
+		}
+
+		.container input[type="submit"] {
+			padding: 10px 20px;
+			font-size: 18px;
+			background-color: #3687eb;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: all 0.3s ease;
+		}
+
+		.container input[type="submit"]:hover {
+			background-color: #fff;
+			color: #72e3e3;
+			box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+		}
+
+		@media screen and (max-width: 600px) {
+			.container {
+				max-width: 90%;
+			}
+		}
+	</style>
+</head>
+<body>
+	   <form class="container" method="post">
+            
+            <label  id="h3" for="otp-code">Provide Your OTP Please</label>
+            <input type="text" id="otp-code" name="otp-code" required><br><br>
+            <input type="submit" value="Submit">
+        </form>
+	<div></div>
+</body>
+</html>
