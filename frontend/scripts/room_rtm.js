@@ -13,7 +13,7 @@ let something = localStorage.getItem("token");
 
 
 logout = () => {
-  fetch("http://localhost:8080/users/logout", {
+  fetch("https://nxm201-cw-backend.onrender.com/users/logout", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
