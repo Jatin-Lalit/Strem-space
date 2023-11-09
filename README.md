@@ -21,14 +21,11 @@ Connect is a user-friendly video chat platform that allows seamless, real-time c
 - Socket.io
 - HTML/CSS
 - Expres
-## Installation and Usage
+## Accessing the Application
 
-To run the application locally, follow these steps:
-1. Clone this repository.
-2. Navigate to the project directory.
-3. Install dependencies using `npm install`.
-4. Start the server using `npm start`.
-5. Access the application in your browser at `http://localhost:3000`.
+
+Simply visit the provided link in your web browser to start using Connect for real-time video chat.
+
 
 ## Contributions
 
